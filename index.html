@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <br>
+    <!-- <div class="logo" style="text-align: center;">
+        <a href="index.html">
+          <img src="./assets/images/logo.png">
+        </a>
+    </div> -->
+    <title>WorldSimBench: Towards Video Generation  Models as World Simulators</title>
+
+    <script>
+        var task_map = {
+            "simple-object-manipulation": "simple_object_manipulation",
+            "visual-goal-reaching": "visual_goal_reaching",
+            "novel-concept-grounding": "novel_concept_grounding",
+            "one-shot-video-imitation": "one_shot_video_imitation",
+            "visual-constraint-satisfaction": "visual_constraint_satisfaction",
+            "visual-reasoning": "visual_reasoning"
+        };
+
+        function updateDemoVideo(category) {
+            // var demo = document.getElementById("single-menu-demos").value;
+            var task = document.getElementById(category + "-menu-tasks").value;
+            var inst = document.getElementById(category + "-menu-instances").value;
+
+            console.log(task_map[category], task, inst)
+
+            var video = document.getElementById(category + "-single-task-video");
+            video.src = "assets/videos/demos/" +
+                task_map[category] +
+                "/" +
+                task +
+                "/" +
+                inst +
+                ".mp4";
+            video.playbackRate = 2.0;
+            video.play();
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/academicons.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">WorldSimBench: Towards Video Generation  Models as World Simulators</h1>
+                    <!-- <h3 class="title is-4 conference-authors"><a target="_blank" href="https://cvpr.thecvf.com/">CVPR 2024</a> -->
+                    </h3>
+                    <div class="is-size-5 publication-authors">
+            <span class="author-block">
+                <a target="_blank">Yiran&#160;Qin</a><sup>1 2*</sup>,
+                <a target="_blank">Zhelun&#160;Shi</a><sup>3*</sup>,
+                <a target="_blank">Jiwen&#160;Yu</a><sup>4</sup>,
+                <a target="_blank">Xijun&#160;Wang</a><sup>2</sup>,
+                <a target="_blank">Enshen&#160;Zhou</a><sup>3</sup>,
+                <a target="_blank">Lijun&#160;Li</a><sup>2</sup>,
+                <br>
+                <a target="_blank">Zhenfei&#160;Yin</a><sup>2&dagger;</sup>,
+                <a target="_blank">Xihui&#160;Liu</a><sup>4&</sup>,
+                <a target="_blank">Lu&#160;Sheng</a><sup>3</sup>,
+                <a target="_blank">Jing&#160;Shao</a><sup>2&#9993</sup>,
+                <a target="_blank">Lei&#160;Bai</a><sup>2&#9993</sup>,
+                <a target="_blank">Wanli&#160;Ouyang</a><sup>2</sup>,
+                <a target="_blank">Ruimao&#160;Zhang</a><sup>1&#9993</sup>
+            </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>1</sup>The Chinese University of Hong Kong; </span>
+                        <span class="author-block"><sup>2</sup>Shanghai Artificial Intelligence Laboratory; </span>
+                        <br>
+                        <span class="author-block"><sup>3</sup>Beihang University; </span>
+                        <span class="author-block"><sup>4</sup>The University of Hong Kong; </span>
+                    </div>
+
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>*&#160;</sup>Equal Contribution&#160;&#160;</span>
+                        <span class="author-block"><sup>&#9993&#160;</sup>Corresponding author&#160;&#160;</span>
+                        <span class="author-block"><sup>&dagger;&#160;</sup>Project Lead&#160;&#160;</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- TODO PDF Link. -->
+                            <span class="link-block">
+                <a target="_blank" href="assets/WorldSimBenchmark.pdf"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+                            <span class="link-block">
+                <a target="_blank" href="assets/WorldSimBenchmark.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                <a target="_blank" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+                <a target="_blank" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="columns is-centered has-text-centered">
+    <div class="column">
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/AZeS3C_S_3M?si=lIUkwqr355KCegxV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+        <!-- <img src="assets/images/motivation.png" class="interpolation-image" -->
+        <!-- alt="" style="display: block; margin-left: auto; margin-right: auto"/> -->
+    </div>
+</div>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p style="font-size: 125%">
+                        Recent advancements in predictive models have demonstrated exceptional capabilities in predicting the future state of objects and scenes. However, the lack of categorization based on inherent characteristics continues to hinder the progress of predictive model development. Additionally, existing benchmarks are unable to effectively evaluate higher-capability, highly embodied predictive models from an embodied perspective. In this work, we classify the functionalities of predictive models into a hierarchy and take the first step in evaluating World Simulators by proposing a dual evaluation framework called WorldSimBench. WorldSimBench includes Explicit Perceptual Evaluation and Implicit Manipulative Evaluation, encompassing human preference assessments from the visual perspective and action-level evaluations in embodied tasks, covering three representative embodied scenarios: Open-Ended Embodied Environment, Autonomous, Driving, and Robot Manipulation. In the Explicit Perceptual Evaluation, we introduce the HF-Embodied Dataset, a video assessment dataset based on fine-grained human feedback, which we use to train a Human Preference Evaluator that aligns with human perception and explicitly assesses the visual fidelity of World Simulater. In the Implicit Manipulative Evaluation, we assess the video-action consistency of World Simulators by evaluating whether the generated situation-aware video can be accurately translated into the correct control signals in dynamic environments. Our comprehensive evaluation offers key insights that can drive further innovation in video generation models, positioning World Simulators as a pivotal advancement toward embodied artificial intelligence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Model-->
+<section class="section">
+    <div class="container is-max-widescreen">
+        <div class="rows">
+            <div class="rows is-centered ">
+                <div class="row is-full-width">
+                    <h2 class="title is-3"><span class="dvima">Overview of MP5 architecture.</span></h2>
+                    <br>
+                    <br>
+                    <img src="assets/images/motivation.png" class="interpolation-image"
+                         alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                    <br>
+                    <br>
+                    <span style="font-size: 110%">
+                        <b>Overview of the hierarchical capabilities of the Predictive Models.</b> Models at higher stages demonstrate more advanced capabilities. We take the initial step in evaluating Predictive Generative Models up to the S3 stage, known as World Simulators, by introducing a parallel evaluation framework, WorldSimBench. WorldSimBench assesses the models both <b>Perceptual Evaluation</b> and <b>Implicit Manipulative Evaluation</b>, focusing on video generation and action transformation across three critical embodied scenarios.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section"></section>
+    <div class="container is-max-widescreen">
+        <div class="rows">
+            <div class="rows is-centered">
+                <div class="row is-full-width">
+                    <h2 class="title is-3"><span class="dvima">Predictive Model Category Definition</span></h2>
+                    <span style="font-size: 110%">
+                        <p>We concretely categorize predictive models based on the model's capabilities and level of embodiment. The detailed categorization stage of is illustrated below:</p>
+                        <br>
+
+                        <ul>
+                            <li><strong>Stage S<sub>0</sub></strong>: At this stage, predictive models can generate corresponding predictions based on instructions and observations but are limited to textual modality. Benchmarks at this stage conduct text-level and task-completion evaluations through output text planning.</li>
+                            <br>
+                            <li><strong>Stage S<sub>1</sub></strong>: At this stage, predictive models can generate visual predictions based on instructions and observations, but without incorporating temporal information. Benchmarks at this stage conduct aesthetic evaluation for generated images.</li>
+                            <br>
+                            <li><strong>Stage S<sub>2</sub></strong>: At this stage, predictive models can generate corresponding video predictions based on both instructions and observations. Yet, due to limited model capabilities, the evaluation at this level focuses solely on the aesthetic quality of the generated outputs.</li>
+                            <br>
+                            <li><strong>Stage S<sub>3</sub></strong>: At this stage, predictive models can generate corresponding video predictions based on instructions and observations, with the predicted video content adhering to physical rules and aligning with the executed actions. These models are known as <strong>World Simulators</strong>, and <em>WorldSimBench</em> is a benchmark specifically designed to evaluate these World Simulators.</li>
+                        </ul>
+                        <br>
+                        <p>The rapidly evolving field of World Simulators offers exciting opportunities for advancing Artificial General Intelligence, with significant potential to enhance human productivity and creativity, especially in embodied intelligence. Therefore, conducting a comprehensive embodied evaluation of World Simulators is crucial.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="section">
+    <div class="container is-max-widescreen">
+        <div class="rows">
+            <div class="rows is-centered ">
+                <div class="row is-full-width">
+                    <h2 class="title is-3"><span class="dvima">Explicit Perceptual Evaluation</span></h2>
+                    <br>
+                    <br>
+                    <img src="assets/images/Dimension.png" class="interpolation-image"
+                         alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                    <br>
+                    <span style="font-size: 110%">
+                        <b>Hierarchical Evaluation Dimension.</b> The dimensions are categorized into three main aspects: Visual Quality for evaluating the overall quality, Condition Consistency for evaluating the alignment to the input instruction, and Embodiment for evaluating embodied related factors like physical rules.</span>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <img src="assets/images/Explicit_pipeline.png" class="interpolation-image"
+                         alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                    <br>
+                    <span style="font-size: 110%">
+                        <b>Overview of Explicit Perceptual Evaluation.</b> (Top) <b>Prompt Generation.</b> We use a large collection of video captions from the internet and our predefined embodied evaluation dimensions. These are expanded using GPT and manually verified to create a corresponding Task Instruction Prompt List for data generation and evaluation. (Bottom) <b>HF-Embodied Dataset Generation.</b> Massive internet-sourced embodied videos with captions are used to train data generation models. Fine-grained Human Feedback Annotation is then applied to the embodied videos according to the corresponding Task Instruction Prompt List, covering multiple embodied dimensions.</span>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <img src="assets/images/Explicit_result.png" class="interpolation-image"
+                             alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                        <br>
+                        <span style="font-size: 110%">
+                            <b>Result of Explicit Perceptual Evaluation aross three embodied scenarios.</b> Scores in each embodied scenario are normalized to 0-1. Check the paper for more experimental details.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="section"></section>
+    <div class="container is-max-widescreen">
+        <div class="rows">
+            <div class="rows is-centered ">
+                <div class="row is-full-width">
+                    <h2 class="title is-3"><span class="dvima">Implicit Manipulative Evaluation</span></h2>
+                    <br>
+                    <br>
+                    <img src="assets/images/Implicit_pipeline.png" class="interpolation-image"
+                         alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                    <br>
+                    <span style="font-size: 110%">
+                        <b>Overview of Implicit Manipulative Evaluation.</b> Embodied tasks in different scenarios are decomposed into executable sub-tasks. The video generation model generates corresponding predicted videos based on the current instructions and real-time observations. Using a pre-trained IDM or a goal-based policy, the agent executes the generated sequence of actions. After a fixed timestep, the predicted video is refreshed by sampling again from the video generation model, and this process repeats. Finally, the success rates of various embodied tasks are obtained through monitors in the simulation environment.</span>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <img src="assets/images/Implicit_result.png" class="interpolation-image"
+                             alt="" style="display: block; margin-left: auto; margin-right: auto"/>
+                        <br>
+                        <span style="font-size: 110%">
+                            <b>Result of Implicit Manipulative Evaluation aross three embodied scenarios.</b> Check the paper for more experimental details.</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!--Conclusion-->
+<section class="section">
+    <div class="container is-max-widescreen">
+        <div class="rows">
+            <div class="rows is-centered ">
+                <div class="row is-full-width">
+                    <h2 class="title is-3"><span
+                            class="dvima">Conclusion</span></h2>
+
+                    <p style="font-size: 125%">
+                        In this work, we classify the functionalities of predictive models into a hierarchy and take the first step in evaluating World Simulators by proposing a dual evaluation framework called <em>WorldSimBench</em>. We conducted a comprehensive evaluation and analysis of multiple video generation models as World Simulators through both <em>Explicit Perceptual Evaluation</em> and <em>Implicit Manipulative Evaluation</em> processes. We summarize key findings from the evaluation and hope these insights will inspire and guide future research on World Simulators.
+                    </p>
+
+                    <p style="font-size: 125%">
+                        <strong>Limitations.</strong> Although we evaluate physical rules and 3D content from the perspective of embodied intelligence, the World Simulator can be applied to more scenarios than just robots, and different scenarios have more physical representations. Therefore, how to effectively evaluate the World Simulator in other scenarios requires more exploration.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- <section class="section" id="BibTeX">
+    <div class="container is-max-widescreen content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{jiang2023vima,
+  title     = {VIMA: General Robot Manipulation with Multimodal Prompts},
+  author    = {Yunfan Jiang and Agrim Gupta and Zichen Zhang and Guanzhi Wang and Yongqiang Dou and Yanjun Chen and Li Fei-Fei and Anima Anandkumar and Yuke Zhu and Linxi Fan},
+  booktitle = {Fortieth International Conference on Machine Learning},
+  year      = {2023}
+}</code></pre>
+    </div>
+</section> -->
+
+<!-- <section class="section" id="BibTeX">
+    <div class="container is-max-widescreen content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{qin2024mp5,
+  title={Mp5: A multi-modal open-ended embodied system in minecraft via active perception},
+  author={Qin, Yiran and Zhou, Enshen and Liu, Qichang and Yin, Zhenfei and Sheng, Lu and Zhang, Ruimao and Qiao, Yu and Shao, Jing},
+  booktitle={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={16307--16316},
+  year={2024},
+  organization={IEEE}
+}</code></pre>
+    </div>
+</section> -->
+
+
+</body>
+</html>
+
